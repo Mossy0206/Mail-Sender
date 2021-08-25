@@ -58,12 +58,14 @@ def import_spreadsheet(fn, ln, d):
 #                continue
 def start():
     while True:
+        time.sleep(3600)
         for x, data in enumerate(import_spreadsheet(1, 1, 1).values):
             t = threading.Thread(target=targ, args=[x, data[0], data[1], data[2]])
             t.start()
             threads.append(t)
         for thread in threads:
             thread.join()
+
 
 
 def targ(id, Sname, Lname, date_due):
